@@ -1,5 +1,5 @@
 import aio_pika
-from .decorators import get_consumer_func
+from .consumer_registry import ConsumerRegistry
 
 
 async def connect_to_rabbitmq(rabbitmq_connection_string: str):
@@ -16,10 +16,22 @@ async def start_listening_to_queue(connection, queue_name):
         queue_name (str): Name of the queue
     """
     async with connection:
+        registry = ConsumerRegistry()
         channel = await connection.channel()
         queue = await channel.declare_queue(queue_name, durable=True)
 
         async for message in queue:
-            consumer_func = get_consumer_func(queue_name)
-            if consumer_func:
-                await consumer_func(message.body)
+            await process_message(message, registry, queue_name)
+
+
+async def process_message(
+    message: aio_pika.IncomingMessage, registry: ConsumerRegistry, queue_name: str
+):
+    try:
+        consumer_func = registry.get_consumer_func(queue_name)
+        if consumer_func:
+            await consumer_func(message.body)
+        await message.ack()
+    except Exception as e:
+        await message.nack(requeue=True)
+        raise e
