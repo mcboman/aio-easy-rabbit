@@ -27,6 +27,14 @@ async def start_listening_to_queue(connection, queue_name):
 async def process_message(
     message: aio_pika.IncomingMessage, registry: ConsumerRegistry, queue_name: str
 ):
+    """
+    Process and manually acknowledge the message.
+
+    Params:
+        message (IncomingMessage): The message from the queue.
+        registry (ConsumerRegistry): The registry with consumer functions.
+        queue_name (str): The name of the queue.
+    """
     try:
         consumer_func = registry.get_consumer_func(queue_name)
         if consumer_func:
