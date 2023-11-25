@@ -20,8 +20,6 @@ async def start_listening_to_queue(connection, queue_name):
         queue = await channel.declare_queue(queue_name, durable=True)
 
         async for message in queue:
-            print(message.body)
             consumer_func = get_consumer_func(queue_name)
-            print(consumer_func)
             if consumer_func:
                 await consumer_func(message.body)
