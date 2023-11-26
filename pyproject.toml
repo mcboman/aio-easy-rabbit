@@ -16,6 +16,10 @@ classifiers = [
 [project.license]
 file = "LICENSE"
 
+[tool.setuptools]
+repository = "https://github.com/mcboman/aio-easy-rabbit"
+
+
 [project.urls]
 "Homepage" = "https://github.com/mcboman/aio-easy-rabbit"
 "Bug Tracker" = "https://github.com/mcboman/aio-easy-rabbit/issues"
