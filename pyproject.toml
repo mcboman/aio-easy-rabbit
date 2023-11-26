@@ -4,7 +4,6 @@ version="0.0.1"
 name="aio-easy-rabbit"
 description="A simple rabbitmq client for asyncio applications based on the awesome aio-pika library!"
 authors = [{ name = "Bo Stokholm", email = "the.one.nachash@gmail.com" }]
-license="MIT"
 repository="https://github.com/mcboman/aio-easy-rabbit"
 readme = "README.md"
 requires-python = ">3.10"
