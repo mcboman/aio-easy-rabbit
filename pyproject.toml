@@ -12,7 +12,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-license = "MIT"
+
+[project.license]
+file = "LICENSE"
 
 [project.urls]
 "Homepage" = "https://github.com/mcboman/aio-easy-rabbit"
