@@ -1,12 +1,12 @@
 import asyncio
 from fastapi import FastAPI
-from src.fastapi_rabbitmq_middleware.connection import (
+from aio_easy_rabbit.connection import (
     connect_to_rabbitmq,
     start_listening_to_queue,
 )
-from src.fastapi_rabbitmq_middleware.decorators import rabbitmq_consumer
-from src.fastapi_rabbitmq_middleware.consumer_registry import ConsumerRegistry
-from src.fastapi_rabbitmq_middleware.producers import RabbitMQPublisher
+from aio_easy_rabbit.decorators import rabbitmq_consumer
+from aio_easy_rabbit.consumer_registry import ConsumerRegistry
+from aio_easy_rabbit.producers import RabbitMQPublisher
 from pydantic import BaseModel
 
 app = FastAPI()
